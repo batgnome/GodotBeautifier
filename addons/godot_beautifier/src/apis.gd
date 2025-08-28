@@ -29,11 +29,11 @@ func get_editor_setting(p_setting : String):
 
 
 func get_global_data_path() -> String:
-        return OS.get_user_data_dir().get_base_dir().get_base_dir().path_join("beautifier.cfg")
+	return OS.get_user_data_dir().get_base_dir().get_base_dir().path_join("beautifier.cfg")
 
 
 func get_local_data_path() -> String:
-        return ProjectSettings.globalize_path("res://").path_join("project.godot")
+	return ProjectSettings.globalize_path("res://").path_join("project.godot")
 
 
 func get_current_dir() -> String:
@@ -50,133 +50,133 @@ func get_system_file(p_path : String) -> String:
 
 
 func get_random_file(p_path : String) -> String:
-        var file_list := []
-        var path := get_current_dir().path_join(p_path)
-        var dir := DirAccess.open(path)
+	var file_list := []
+	var path := get_current_dir().path_join(p_path)
+	var dir := DirAccess.open(path)
 
-        if dir:
-                dir.list_dir_begin()
-                var file_name := dir.get_next()
-                while file_name != "":
-                        if !dir.current_is_dir() && file_name.get_extension() != "import":
-                                file_list.append(file_name)
-                        file_name = dir.get_next()
+	if dir:
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while file_name != "":
+			if !dir.current_is_dir() && file_name.get_extension() != "import":
+				file_list.append(file_name)
+			file_name = dir.get_next()
 
-        return path.path_join(file_list[randi() % file_list.size()])
+	return path.path_join(file_list[randi() % file_list.size()])
 
 
 func get_random_dir(p_path : String) -> String:
-        var dir_list := []
-        var path := get_current_dir().path_join(p_path)
-        var dir := DirAccess.open(path)
+	var dir_list := []
+	var path := get_current_dir().path_join(p_path)
+	var dir := DirAccess.open(path)
 
-        if dir:
-                dir.list_dir_begin()
-                var dir_name := dir.get_next()
-                while dir_name != "":
-                        if dir.current_is_dir():
-                                dir_list.append(dir_name)
-                        dir_name = dir.get_next()
+	if dir:
+		dir.list_dir_begin()
+		var dir_name := dir.get_next()
+		while dir_name != "":
+			if dir.current_is_dir():
+				dir_list.append(dir_name)
+			dir_name = dir.get_next()
 
-        return path.path_join(dir_list[randi() % dir_list.size()])
+	return path.path_join(dir_list[randi() % dir_list.size()])
 
 
 func send_message(p_text : String, p_title := "Message", p_anchor := 0, p_size := Vector2()) -> void:
-        var dialog := Window.new()
-        dialog.title = p_title
+	var dialog := Window.new()
+	dialog.title = p_title
 
-        var label := Label.new()
-        label.anchor_right = 1
-        label.anchor_bottom = 1
-        label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-        label.autowrap_mode = TextServer.AUTOWRAP_WORD
-        label.clip_text = true
-        label.text = p_text
+	var label := Label.new()
+	label.anchor_right = 1
+	label.anchor_bottom = 1
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	label.clip_text = true
+	label.text = p_text
 
-        dialog.add_child(label)
-        dialog.close_requested.connect(Callable(self, "_on_message_dialog_hide").bind(dialog))
-        get_editor_panel().add_child(dialog)
+	dialog.add_child(label)
+	dialog.close_requested.connect(Callable(self, "_on_message_dialog_hide").bind(dialog))
+	get_editor_panel().add_child(dialog)
 
-        if p_size == Vector2():
-                p_size = Vector2(360, 80)
+       if p_size == Vector2():
+	       p_size = Vector2(360, 80)
 
-        var size_i := Vector2i(p_size)
-        match p_anchor:
-                0:
-                        dialog.popup_centered(size_i)
-                1:
-                        dialog.position = get_editor_panel().size - size_i - Vector2i(10, 10)
-                        dialog.size = size_i
-                        dialog.show()
+       var size_i := Vector2i(p_size)
+       match p_anchor:
+	       0:
+		       dialog.popup_centered(size_i)
+	       1:
+		       dialog.position = Vector2i(get_editor_panel().size) - size_i - Vector2i(10, 10)
+		       dialog.size = size_i
+		       dialog.show()
 
 
 func _on_message_dialog_hide(p_dialog : Window) -> void:
-        p_dialog.queue_free()
+	p_dialog.queue_free()
 
 
 func add_node(p_to : Node, p_path : String) -> void:
-        var node : Node = load(p_path).instantiate()
-        nodes.append(node)
-        p_to.add_child(node)
+	var node : Node = load(p_path).instantiate()
+	nodes.append(node)
+	p_to.add_child(node)
 
 
 func add_background_image(p_control : Control, p_path : String, p_stretch_mode := 0) -> void:
-        var texture_rect := TextureRect.new()
-        nodes.append(texture_rect)
+	var texture_rect := TextureRect.new()
+	nodes.append(texture_rect)
 
-        texture_rect.anchor_right = 1
-        texture_rect.anchor_bottom = 1
-        texture_rect.stretch_mode = p_stretch_mode
-        texture_rect.texture = load(p_path)
+	texture_rect.anchor_right = 1
+	texture_rect.anchor_bottom = 1
+	texture_rect.stretch_mode = p_stretch_mode
+	texture_rect.texture = load(p_path)
 	
 	p_control.add_child(texture_rect)
 	p_control.move_child(texture_rect, 0)
 
 
 func add_background_video(p_control : Control, p_path : String, p_loop := true, p_volumn := 0) -> void:
-        var video_player := VideoStreamPlayer.new()
-        nodes.append(video_player)
+       var video_player := VideoStreamPlayer.new()
+       nodes.append(video_player)
 
-        video_player.anchor_bottom = 1
-        video_player.anchor_right = 1
-        video_player.stretch_mode = VideoStreamPlayer.STRETCH_SCALE
-        video_player.stream = load(p_path)
-        video_player.volume_db = p_volumn
+       video_player.anchor_bottom = 1
+       video_player.anchor_right = 1
+       video_player.stretch_mode = VideoStreamPlayer.STRETCH_FILL
+       video_player.stream = load(p_path)
+       video_player.volume_db = p_volumn
 
-        if p_loop:
-                video_player.finished.connect(Callable(self, "_on_video_player_finished").bind(video_player))
+	if p_loop:
+		video_player.finished.connect(Callable(self, "_on_video_player_finished").bind(video_player))
 
-        p_control.add_child(video_player)
-        p_control.move_child(video_player, 0)
+	p_control.add_child(video_player)
+	p_control.move_child(video_player, 0)
 
-        video_player.play()
+	video_player.play()
 
 
 func _on_video_player_finished(p_video_player : VideoStreamPlayer) -> void:
-        p_video_player.play()
+	p_video_player.play()
 
 
 func add_background_music(p_path : String,  p_loop := true, p_volumn_db := 0.0) -> void:
-        var music_player := AudioStreamPlayer.new()
+	var music_player := AudioStreamPlayer.new()
 
-        var music_stream : AudioStream = load(p_path)
-        music_player.stream = music_stream
-        music_player.volume_db = p_volumn_db
+	var music_stream : AudioStream = load(p_path)
+	music_player.stream = music_stream
+	music_player.volume_db = p_volumn_db
 
-        if music_stream is AudioStreamMP3 || music_stream is AudioStreamOGGVorbis:
-                music_stream.loop = p_loop
-        elif music_stream is AudioStreamSample:
-                if p_loop:
-                        music_stream.loop_mode = AudioStreamSample.LOOP_FORWARD
-                else:
-                        music_stream.loop_mode = AudioStreamSample.LOOP_DISABLED
+       if music_stream is AudioStreamMP3 || music_stream is AudioStreamOggVorbis:
+	       music_stream.loop = p_loop
+       elif music_stream is AudioStreamWAV:
+	       if p_loop:
+		       music_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	       else:
+		       music_stream.loop_mode = AudioStreamWAV.LOOP_DISABLED
 
-        music_player.finished.connect(Callable(self, "_on_music_player_finished").bind(music_player))
+	music_player.finished.connect(Callable(self, "_on_music_player_finished").bind(music_player))
 
-        add_child(music_player)
+	add_child(music_player)
 
-        music_player.play()
+	music_player.play()
 
 
 func _on_music_player_finished(p_music_player : AudioStreamPlayer) -> void:
@@ -269,11 +269,11 @@ func set_text_editor_colors_by_cfg(p_path : String, p_section := "color_theme") 
 
 
 func file_exists(p_path : String) -> bool:
-        return FileAccess.file_exists(p_path)
+	return FileAccess.file_exists(p_path)
 
 
 func dir_exists(p_path : String) -> bool:
-        return DirAccess.dir_exists_absolute(p_path)
+	return DirAccess.dir_exists_absolute(p_path)
 
 
 func store_global_data(p_key : String, p_value) -> void:

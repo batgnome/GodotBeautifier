@@ -29,11 +29,12 @@ func _enter_tree() -> void:
 	add_tool_submenu_item("Beautifier", menu)
 	## Add tool menu. ##
 	
-	## Add settings panel. ##
+        ## Add settings panel. ##
         _SettingsPanel = preload("src/settings_panel.tscn").instantiate()
-	_SettingsPanel.Main = self
-	get_editor_interface().get_base_control().add_child(_SettingsPanel)
-	## Add settings panel. ##
+        _SettingsPanel.Main = self
+        get_editor_interface().get_base_control().add_child(_SettingsPanel)
+        _SettingsPanel.close_requested.connect(_SettingsPanel.hide)
+        ## Add settings panel. ##
 	
 	## Load theme. ##
 	var script_path : String
