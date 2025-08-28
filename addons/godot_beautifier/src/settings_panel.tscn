@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource path="res://addons/godot_beautifier/src/settings_panel.gd" type="Script" id=1]
 
@@ -23,9 +23,9 @@ size = Vector2( 32, 32 )
 
 [node name="Settings" type="WindowDialog"]
 visible = true
-margin_right = 400.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 400, 300 )
+offset_right = 400.0
+offset_bottom = 300.0
+custom_minimum_size = Vector2( 400, 300 )
 window_title = "Settings"
 resizable = true
 script = ExtResource( 1 )
@@ -33,37 +33,36 @@ script = ExtResource( 1 )
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 390.0
-margin_bottom = 290.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 390.0
+offset_bottom = 290.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 380.0
-margin_bottom = 80.0
+offset_right = 380.0
+offset_bottom = 80.0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 188.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 0, 80 )
+offset_right = 188.0
+offset_bottom = 80.0
+custom_minimum_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
 texture = SubResource( 3 )
-expand = true
 stretch_mode = 6
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 192.0
-margin_right = 380.0
-margin_bottom = 80.0
+offset_left = 192.0
+offset_right = 380.0
+offset_bottom = 80.0
 size_flags_horizontal = 3
-custom_styles/focus = SubResource( 11 )
-custom_styles/normal = SubResource( 12 )
+theme_override_styles/focus = SubResource( 11 )
+theme_override_styles/normal = SubResource( 12 )
 bbcode_enabled = true
 bbcode_text = "
 [rainbow freq=0.2 sat=0.4]Godot Beautifier[/rainbow]
@@ -73,48 +72,48 @@ Godot Beautifier
 Version 1.0.2"
 
 [node name="EnableRandom" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 84.0
-margin_right = 380.0
-margin_bottom = 108.0
+offset_top = 84.0
+offset_right = 380.0
+offset_bottom = 108.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/EnableRandom"]
-margin_right = 380.0
-margin_bottom = 24.0
+offset_right = 380.0
+offset_bottom = 24.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/EnableRandom/HBoxContainer"]
-margin_top = 5.0
-margin_right = 188.0
-margin_bottom = 19.0
+offset_top = 5.0
+offset_right = 188.0
+offset_bottom = 19.0
 size_flags_horizontal = 3
 text = "Enable Random Theme"
 
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/EnableRandom/HBoxContainer"]
-margin_left = 192.0
-margin_right = 380.0
-margin_bottom = 24.0
+offset_left = 192.0
+offset_right = 380.0
+offset_bottom = 24.0
 size_flags_horizontal = 3
 text = "On"
 
 [node name="SetTheme" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 112.0
-margin_right = 380.0
-margin_bottom = 132.0
+offset_top = 112.0
+offset_right = 380.0
+offset_bottom = 132.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SetTheme"]
-margin_right = 380.0
-margin_bottom = 20.0
+offset_right = 380.0
+offset_bottom = 20.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SetTheme/HBoxContainer"]
-margin_top = 3.0
-margin_right = 188.0
-margin_bottom = 17.0
+offset_top = 3.0
+offset_right = 188.0
+offset_bottom = 17.0
 size_flags_horizontal = 3
 text = "Set Theme"
 
 [node name="MenuButton" type="MenuButton" parent="MarginContainer/VBoxContainer/SetTheme/HBoxContainer"]
-margin_left = 192.0
-margin_right = 380.0
-margin_bottom = 20.0
+offset_left = 192.0
+offset_right = 380.0
+offset_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 text = "Night Breeze"
@@ -122,24 +121,24 @@ align = 0
 items = [ "cool_black", null, 0, false, false, 0, 0, "res://addons/godot_beautifier/cool_black", "", false, "nana7mi", null, 0, false, false, 1, 0, "res://addons/godot_beautifier/nana7mi", "", false, "night_breeze", null, 0, false, false, 2, 0, "res://addons/godot_beautifier/night_breeze", "", false ]
 
 [node name="Github" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 136.0
-margin_right = 380.0
-margin_bottom = 150.0
+offset_top = 136.0
+offset_right = 380.0
+offset_bottom = 150.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Github"]
-margin_right = 380.0
-margin_bottom = 14.0
+offset_right = 380.0
+offset_bottom = 14.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Github/HBoxContainer"]
-margin_right = 188.0
-margin_bottom = 14.0
+offset_right = 188.0
+offset_bottom = 14.0
 size_flags_horizontal = 3
 text = "Source Code"
 
 [node name="LinkButton" type="LinkButton" parent="MarginContainer/VBoxContainer/Github/HBoxContainer"]
-margin_left = 192.0
-margin_right = 380.0
-margin_bottom = 14.0
+offset_left = 192.0
+offset_right = 380.0
+offset_bottom = 14.0
 focus_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
