@@ -77,7 +77,7 @@ func get_dir_list(p_path : String) -> Array:
         var dir_list := []
         var dir := DirAccess.open(p_path)
         if dir:
-                dir.list_dir_begin()
+                dir.list_dir_begin(true, true)
                 var dir_name := dir.get_next()
                 while dir_name != "":
                         if dir.current_is_dir():
